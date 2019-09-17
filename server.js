@@ -18,4 +18,16 @@ app.post('/api/transact', function (req, res) {
     });
 })
 
+app.get('/api/account', function (req, res) {
+    let id = req.query.id;
+
+    // Lazily import the assets-listing function.
+    const { account } = require("./src/account");
+
+    // Log the result to the console.
+    return account({ id }).then(data => {
+        res.json(data)
+    });
+})
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
