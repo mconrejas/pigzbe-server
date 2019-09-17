@@ -1,0 +1,18 @@
+{
+  "name": "@pigzbe-stellar-library/pigzbe-library",
+  "version": "1.0.0",
+  "description": "Pigzbe stellar network library",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "McRupert Onrejas",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "minimist": "^1.2.0",
+    "stellar-base": "^2.0.2",
+    "stellar-sdk": "^3.0.0"
+  }
+}
