@@ -31,6 +31,7 @@ async function transaction({ destination, amount }) {
         return await server.submitTransaction(transaction);
     } catch (err) {
         console.error(err);
+        return err;
     }
 }
 
