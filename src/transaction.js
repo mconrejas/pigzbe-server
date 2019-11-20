@@ -17,7 +17,7 @@ async function transaction({ destination, amount }) {
             // this operation funds the new account with XLM
             StellarSdk.Operation.payment({
                 destination: destination,
-                asset: new StellarSdk.Asset('WLO', 'GDJUDY43TNSJH4IYQVUXHTTYROMDULLQ4RQQHW6Z6SEI572LBLXGDAH2'),
+                asset: new StellarSdk.Asset('WLO', `${API_KEY}`),
                 amount: `${amount}`
             })
         )
