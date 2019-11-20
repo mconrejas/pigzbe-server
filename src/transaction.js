@@ -8,7 +8,7 @@ const server = new StellarSdk.Server(API_BASE_URL);
 
 async function transaction({ destination, amount }) {
 
-    const account = await server.loadAccount(WALLET_ADDRESS);
+    const account = await server.loadAccount(WALLET_ID);
 
     const fee = await server.fetchBaseFee();
 
@@ -17,7 +17,7 @@ async function transaction({ destination, amount }) {
             // this operation funds the new account with XLM
             StellarSdk.Operation.payment({
                 destination: destination,
-                asset: new StellarSdk.Asset('WLO', WALLET_ID),
+                asset: new StellarSdk.Asset('WLO', WALLET_ADDRESS),
                 amount: `${amount}`
             })
         )
