@@ -1,14 +1,14 @@
-const { WALLET_ADDRESS, WALLET_ID, WALLET_SECRET, API_BASE_URL } = require("../config");
+const { WALLET_ADDRESS, WALLET_ID, WALLET_SECRET, API_BASE_URL, API_ENV } = require("../config");
 
 const StellarSdk = require('stellar-sdk')
 
-StellarSdk.Network.useTestNetwork();
+if (API_ENV)
+    StellarSdk.Network.usePublicNetwork();
 
 const server = new StellarSdk.Server(API_BASE_URL);
 
 async function transaction({ destination, amount }) {
-
-    const account = await server.loadAccount(WALLET_ID);
+    const account = await server.loadAccount(WALLET_ADDRESS);
 
     const fee = await server.fetchBaseFee();
 
@@ -17,8 +17,8 @@ async function transaction({ destination, amount }) {
             // this operation funds the new account with XLM
             StellarSdk.Operation.payment({
                 destination: destination,
-                asset: new StellarSdk.Asset('WLO', WALLET_ADDRESS),
-                amount: `${amount}`
+                asset: new StellarSdk.Asset('WLO', WALLET_ID),
+                amount: amount
             })
         )
         .setTimeout(30)

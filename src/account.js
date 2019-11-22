@@ -1,14 +1,15 @@
-const { API_KEY, API_SECRET, API_BASE_URL } = require("../config");
+const { API_BASE_URL, API_ENV } = require("../config");
 
 const StellarSdk = require('stellar-sdk')
 
-StellarSdk.Network.useTestNetwork();
+if (API_ENV)
+    StellarSdk.Network.usePublicNetwork();
 
 const server = new StellarSdk.Server(API_BASE_URL);
 
 async function account({ id }) {
 
-    return account = await server.accounts()
+    const account = await server.accounts()
         .accountId(id)
         .call()
         .then(function (accountResult) {
@@ -17,6 +18,8 @@ async function account({ id }) {
         .catch(function (err) {
             return err;
         });
+
+    return account;
 }
 
 exports.account = account;
